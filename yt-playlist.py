@@ -64,10 +64,10 @@ def convert_to_csv(info: any) -> any:
             channel_name: entry['channel'],
             channel_url: entry['channel_url'],
             view_count: entry['view_count'],
-            thumbnail_xs: entry['thumbnails'][0]['url'],
-            thumbnail_s: entry['thumbnails'][1]['url'],
-            thumbnail_m: entry['thumbnails'][2]['url'],
-            thumbnail_l: entry['thumbnails'][3]['url'],
+            thumbnail_xs: entry['thumbnails'][0]['url'] if len(entry['thumbnails']) > 0 else "",
+            thumbnail_s: entry['thumbnails'][1]['url'] if len(entry['thumbnails']) > 1 else "",
+            thumbnail_m: entry['thumbnails'][2]['url'] if len(entry['thumbnails']) > 2 else "",
+            thumbnail_l: entry['thumbnails'][3]['url'] if len(entry['thumbnails']) > 3 else "",
         }
 
 def print_csv(info: any):
