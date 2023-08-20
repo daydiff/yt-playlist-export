@@ -2,6 +2,14 @@
 
 yt-playlist is a tool that allows to export YouTube playlists, export YouTube "Watch later" list and export YouTube "Liked videos". It supports exporting to JSON and CSV formats.
 
+## Installation
+
+```bash
+git clone https://github.com/daydiff/yt-playlist.git
+cd yt-playlist
+python3 -m pip install -r requirements.txt
+```
+
 ## Usage
 
 ```bash
