@@ -6,7 +6,7 @@ import sys
 import json
 import yt_dlp
 
-parser = argparse.ArgumentParser(description='yt-playlist exports YouTube playlists to JSON or CSV')
+parser = argparse.ArgumentParser(description='yt-playlist-export exports YouTube playlists to JSON or CSV')
 parser.add_argument('--browser', type=str, required=False, default='firefox', help='browser where you logged in to YouTube')
 parser.add_argument('-f', '--format', type=str, choices=['csv', 'json'], required=False, default='csv', help='output\'s format')
 parser.add_argument('-o', '--output', type=str, required=False, help='filename to store output, by default it\'s printed to stdout')
@@ -52,7 +52,7 @@ header = [
     thumbnail_l,
 ]
 
-# Converts ytl JSON structure to yt-playlist, in particular removing all not populated field
+# Converts ytl JSON structure to yt-playlist-export, in particular removing all not populated field
 def convert_to_csv(info: any) -> any:
     for entry in info['entries']:
         yield {
