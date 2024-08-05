@@ -97,11 +97,12 @@ ydl_opts = {
     'quiet': not verbose
 }
 
-with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-    info = ydl.extract_info(playlist, download=False)
-    # ydl.sanitize_info makes the info json-serializable
-    info_sanitized = ydl.sanitize_info(info)
-    if format == 'json':
-        print_json(info_sanitized)
-    else:
-        print_csv(info_sanitized)
+def main():
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        info = ydl.extract_info(playlist, download=False)
+        # ydl.sanitize_info makes the info json-serializable
+        info_sanitized = ydl.sanitize_info(info)
+        if format == 'json':
+            print_json(info_sanitized)
+        else:
+            print_csv(info_sanitized)

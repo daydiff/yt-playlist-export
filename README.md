@@ -4,15 +4,13 @@ yt-playlist-export is a tool that allows to export YouTube playlists, export You
 
 ## Installation
 
-```bash
-git clone https://github.com/daydiff/yt-playlist-export.git
-cd yt-playlist-export
-python3 -m pip install -r requirements.txt
+```bash {"id":"01J4HFTRJ1CK76GD127E1R65GX"}
+python3 -m pip install yt-playlist-export
 ```
 
 ## Usage
 
-```bash
+```bash {"id":"01J4HFTRJ1CK76GD127F41SF28"}
 yt-playlist-export -h
 usage: yt-playlist-export [-h] [--browser BROWSER] [-f {csv,json}] [-o OUTPUT] [-v] playlist [playlist ...]
 
@@ -33,12 +31,11 @@ optional arguments:
 
 ## Show case
 
-```bash
+```bash {"id":"01J4HFTRJ1CK76GD127FGZF1W0"}
 yt-playlist-export https://www.youtube.com/playlist\?list\=PL0XfG7TzasxNCl8a-SdyvSoazX1VYBweF -f csv -o test.csv
 ```
 
 ![YouTube playlist exported to CSV](/assets/format_csv.png)
-
 
 ## Dependencies
 

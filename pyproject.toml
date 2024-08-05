@@ -1,0 +1,45 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "yt-playlist-export"
+version = "0.0.1"
+authors = [
+  { name="Aleksandr Tabakov", email="info@atabakoff.com" },
+]
+description = "yt-playlist-export is a tiny Python tool that allows to export private YouTube playlists, export YouTube's \"Watch later\" list and export YouTube \"Liked videos\""
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = [
+    "youtube",
+    "youtube-playlist",
+    "youtube-playlist-backup",
+    "youtube-playlist-export ",
+]
+license = {file = "LICENSE"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: The Unlicense (Unlicense)",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "yt-dlp"
+]
+
+[project.urls]
+Homepage = "https://github.com/daydiff/yt-playlist-export"
+Issues = "https://github.com/daydiff/yt-playlist-export/issues"
+
+[project.scripts]
+yt-playlist-export = "yt_playlist_export:main"
+
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/.gitignore",  # included by default, needed for auto-excludes
+    "/LICENSE",  # included as license
+    "/pyproject.toml",  # included by default
+    "/README.md",  # included as readme
+]
