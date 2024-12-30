@@ -75,7 +75,7 @@ def print_csv(info: any):
     if output is None:
         csv_file = sys.stdout
     else:
-        csv_file = open(output, mode='w', newline='')
+        csv_file = open(output, mode='w', newline='', encoding='utf-8')
     writer = csv.DictWriter(csv_file, fieldnames=header)
     writer.writeheader()
     for row in convert_to_csv(info):
