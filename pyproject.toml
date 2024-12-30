@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "yt-playlist-export"
-version = "0.0.1"
+version = "0.0.5"
 authors = [
   { name="Aleksandr Tabakov", email="info@atabakoff.com" },
 ]
