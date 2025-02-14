@@ -111,7 +111,7 @@ def parse_browser_string(browserCookieString):
     container = None if container_pos < 0 else browserCookieString[container_pos+2:]
 
     # the order is swapped for the Python ytdlp api
-    return (browser, profile, keyring, container)
+    return (browser, None if profile == "" else profile, None if keyring == "" else keyring, None if container == "" else container)
 
 # See help(yt_dlp.YoutubeDL) for a list of available options and public functions
 ydl_opts = {
