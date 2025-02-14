@@ -89,9 +89,33 @@ def print_json(info: any):
         with open(output, 'w') as f:
             f.write(json.dumps(info))
 
+# See the yt-dlp main page for the --cookies-from-browser syntax description
+# which in brief is browser+keyring:profile::container
+# This function converts it to a tuple as per help(yt_dlp.YoutubeDL)
+# On errors fall back to assuming the entire string is a browser, which was behaviour before this function was added
+def parse_browser_string(browserCookieString):
+    # This is probably doable with a single encompassing regex with capturing groups but I couldnt get it to work perfectly in all 16+ edge cases
+    # For now it is ugly but functional
+    keyring_pos = browserCookieString.find('+')
+    profile_pos = browserCookieString.find(':')
+    container_pos = browserCookieString.find('::')
+    #print(keyring_pos, profile_pos, container_pos)
+    if (profile_pos > 0 and profile_pos < keyring_pos) or (container_pos > 0 and container_pos < profile_pos) or keyring_pos == 0 or profile_pos == 0:
+        return (browserCookieString,)
+    browser = browserCookieString[0:profile_pos if keyring_pos < 0 else keyring_pos]
+    keyring = None if keyring_pos < 0 else browserCookieString[keyring_pos+1:None if profile_pos < 0 else profile_pos]
+    if profile_pos == container_pos: # no profile - the first colon is a double
+        profile = None
+    else:
+        profile = browserCookieString[profile_pos+1:None if container_pos < 0 else container_pos]
+    container = None if container_pos < 0 else browserCookieString[container_pos+2:]
+
+    # the order is swapped for the Python ytdlp api
+    return (browser, profile, keyring, container)
+
 # See help(yt_dlp.YoutubeDL) for a list of available options and public functions
 ydl_opts = {
-    'cookiesfrombrowser': (args.browser,),
+    'cookiesfrombrowser': parse_browser_string(args.browser),
     'ignoreerrors': 'only_download',
     'extract_flat': True,
     'quiet': not verbose
