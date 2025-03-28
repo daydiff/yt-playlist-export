@@ -10,6 +10,7 @@ from yt_dlp.cookies import SUPPORTED_BROWSERS, SUPPORTED_KEYRINGS
 
 parser = argparse.ArgumentParser(description='yt-playlist-export exports YouTube playlists to JSON or CSV')
 parser.add_argument('--browser', type=str, required=False, default='firefox', help='browser where you logged in to YouTube')
+parser.add_argument('--cookies', type=str, required=False, help='absolute path to a Netscape formatted cookie file')
 parser.add_argument('-f', '--format', type=str, choices=['csv', 'json'], required=False, default='csv', help='output\'s format')
 parser.add_argument('-o', '--output', type=str, required=False, help='filename to store output, by default it\'s printed to stdout')
 parser.add_argument('-v', '--verbose', action='store_true', help='verbose')
@@ -116,11 +117,15 @@ def parse_browser_arg(cookiesfrombrowser):
 
 # See help(yt_dlp.YoutubeDL) for a list of available options and public functions
 ydl_opts = {
-    'cookiesfrombrowser': parse_browser_arg(args.browser),
     'ignoreerrors': 'only_download',
     'extract_flat': True,
     'quiet': not verbose
 }
+
+if args.cookies:
+    ydl_opts['cookies'] = args.cookies
+else:
+    ydl_opts['cookiesfrombrowser'] = parse_browser_arg(args.browser)
 
 def main():
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
