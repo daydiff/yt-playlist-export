@@ -93,6 +93,7 @@ def print_json(info: any):
             f.write(json.dumps(info))
 
 def parse_browser_arg(cookiesfrombrowser):
+    # taken from yt-dlp: https://github.com/yt-dlp/yt-dlp/blob/6ca23ffaa4663cb552f937f0b1e9769b66db11bd/yt_dlp/__init__.py#L382-L402
     if cookiesfrombrowser:
         container = None
         mobj = re.fullmatch(r'''(?x)
